@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { asyncGetIt } from './actions/asyncTasks';
-
-import Menu from './Menu';
-import './App.css';
+import { asyncGetIt } from '../actions/asyncTasks';
 
 class App extends Component {
 
@@ -19,7 +16,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Menu/>
         <div>
           <input type="text" ref={(input) => { this.taskInput = input }}/>
           <button onClick={this.addTask.bind(this)} >Add Task</button>
