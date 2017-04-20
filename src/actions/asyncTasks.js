@@ -1,15 +1,18 @@
 const mockUpData = [
     {
         id: 123,
-        taskName: 'do nothing'
+        taskName: 'do nothing',
+        completed: false
     },
     {
         id: 345345,
-        taskName: 'eat shit'
+        taskName: 'eat shit',
+        completed: false
     },
     {
         id: 342,
-        taskName: 'watch movie'
+        taskName: 'watch movie',
+        completed: false
     }
 ];
 

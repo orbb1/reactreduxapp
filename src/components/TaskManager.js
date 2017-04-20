@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { asyncGetIt } from '../actions/asyncTasks';
 
-class App extends Component {
+class TaskManager extends Component {
 
   addTask() {
     this.props.onAddTask(this.taskInput.value)
@@ -29,7 +29,10 @@ class App extends Component {
         </div>
         <ul>
           {this.props.tasks.map((task, index) => 
-            <li key={ index }>{ task.taskName }</li>
+            <div key={ index }>
+              <span onClick={ this.props.toggleComplete(task) }>{ task.completed ? "X" : "[]" }</span>
+              <span> { task.taskName }</span>
+            </div>
           )}
         </ul>
       </div>
@@ -54,6 +57,9 @@ export default connect(
     },
     onGetIt: () => {
       dispatch(asyncGetIt());
+    },
+    toggleComplete: (todo) => {
+        dispatch({ type: "COMPLETE_TASK", task: todo })
     }
   })
-)(App);
+)(TaskManager);
