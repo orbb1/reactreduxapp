@@ -4,6 +4,13 @@ import { connect } from 'react-redux';
 import { asyncGetIt } from '../actions/asyncTasks';
 
 class TaskManager extends Component {
+  constructor(props) {
+    super(props);
+
+    this.addTask = this.addTask.bind(this);
+    this.filterTasks = this.filterTasks.bind(this);
+    this.onToggleComplete = this.onToggleComplete.bind(this);
+  }
 
   addTask() {
     this.props.onAddTask(this.taskInput.value)
@@ -13,16 +20,20 @@ class TaskManager extends Component {
     this.props.onFilter(this.filterInput.value);
   }
 
+  onToggleComplete(taskk) {
+    this.props.toggleComplete(taskk);
+  }
+  
   render() {
     return (
       <div>
         <div>
           <input type="text" ref={(input) => { this.taskInput = input }}/>
-          <button onClick={this.addTask.bind(this)} >Add Task</button>
+          <button onClick={this.addTask} >Add Task</button>
         </div>
         <div>
           <input type="text" ref={(input) => { this.filterInput = input }}/>
-          <button onClick={this.filterTasks.bind(this)} >Filter</button>
+          <button onClick={this.filterTasks} >Filter</button>
         </div>
         <div>
           <button onClick={ this.props.onGetIt }>get it</button>
@@ -30,8 +41,9 @@ class TaskManager extends Component {
         <ul>
           {this.props.tasks.map((task, index) => 
             <div key={ index }>
-              <span onClick={ this.props.toggleComplete(task) }>{ task.completed ? "X" : "[]" }</span>
+              <button onClick={() => this.onToggleComplete(task)}>X</button>
               <span> { task.taskName }</span>
+              <p>Task status: { task.completed ? "done" : "not done" }</p>
             </div>
           )}
         </ul>
@@ -47,7 +59,7 @@ export default connect(
   dispatch => ({
     onAddTask: (taskName) => {
       const task = {
-        id : Date.now().toString(),
+        id : Number(Date.now().toString()),
         taskName
       }
       dispatch({ type: "ADD_TASK", task })
