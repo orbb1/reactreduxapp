@@ -70,8 +70,8 @@ export default connect(
     onGetIt: () => {
       dispatch(asyncGetIt());
     },
-    toggleComplete: (todo) => {
-        dispatch({ type: "COMPLETE_TASK", task: todo })
+    toggleComplete: (task) => {
+        dispatch({ type: "COMPLETE_TASK", task })
     }
   })
 )(TaskManager);
