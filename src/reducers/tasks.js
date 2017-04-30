@@ -12,7 +12,9 @@ export default function tasklist(state = initialState, action) {
         return action.task.completed = !action.task.completed;
     } else if (action.type === "ASYNC_TASK") {
         console.log("Async task", state);
-        return action.task;
+        return [
+            ...state, ...action.task
+        ];
     } else {
         return state;
     }
