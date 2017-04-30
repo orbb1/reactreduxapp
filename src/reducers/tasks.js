@@ -9,7 +9,13 @@ export default function tasklist(state = initialState, action) {
             ];
             
         case "COMPLETE_TASK":
-            return action.task.completed = !action.task.completed;
+            return state.map(
+                item => { 
+                    if (item.id === action.task.id) {
+                        item.completed = !item.completed;
+                    } return item;
+                }
+            );
 
         case "ASYNC_TASK":
             return [
