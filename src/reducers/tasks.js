@@ -7,6 +7,11 @@ export default function tasklist(state = initialState, action) {
             return [
                 ...state, action.task
             ];
+        
+        case "REMOVE_TASK": 
+            let taskIndex = state.indexOf(action.task);
+            return state.slice(0, taskIndex)
+                        .concat(state.slice(taskIndex+1, state.length));
             
         case "COMPLETE_TASK":
             return state.map(
@@ -16,7 +21,7 @@ export default function tasklist(state = initialState, action) {
                     } return item;
                 }
             );
-
+        
         case "ASYNC_TASK":
             return [
                 ...state, ...action.task

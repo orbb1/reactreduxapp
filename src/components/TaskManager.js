@@ -10,10 +10,15 @@ class TaskManager extends Component {
     this.addTask = this.addTask.bind(this);
     this.filterTasks = this.filterTasks.bind(this);
     this.onToggleComplete = this.onToggleComplete.bind(this);
+    this.removeTask = this.removeTask.bind(this);
   }
 
   addTask() {
     this.props.onAddTask(this.taskInput.value)
+  }
+
+  removeTask(taskk) {
+    this.props.onRemoveTask(taskk);
   }
 
   filterTasks() {
@@ -44,6 +49,7 @@ class TaskManager extends Component {
               <button onClick={() => this.onToggleComplete(task)}>X</button>
               <span> { task.taskName }</span>
               <p>Task status: { task.completed ? "done" : "not done" }</p>
+              <button onClick={() => this.removeTask(task)}>remove</button>
             </div>
           )}
         </ul>
@@ -64,6 +70,11 @@ export default connect(
       }
       dispatch({ type: "ADD_TASK", task })
     },
+
+    onRemoveTask: (task) => {
+      dispatch({ type: "REMOVE_TASK", task })
+    },
+
     onFilter: (taskName) => {
       dispatch({ type: "FILTER_TASKS", task: taskName })
     },
