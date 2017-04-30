@@ -1,21 +1,22 @@
 const initialState = [];
 
-
 export default function tasklist(state = initialState, action) {
-    if (action.type === "ADD_TASK") {
-        console.log("adding task", state);
-        return [
-            ...state, action.task
-        ];
-    } else if (action.type === "COMPLETE_TASK") {
-        console.log("Complete task", state);
-        return action.task.completed = !action.task.completed;
-    } else if (action.type === "ASYNC_TASK") {
-        console.log("Async task", state);
-        return [
-            ...state, ...action.task
-        ];
-    } else {
-        return state;
+
+    switch (action.type) {
+        case "ADD_TASK":
+            return [
+                ...state, action.task
+            ];
+            
+        case "COMPLETE_TASK":
+            return action.task.completed = !action.task.completed;
+
+        case "ASYNC_TASK":
+            return [
+                ...state, ...action.task
+            ];
+
+        default:
+        return state; 
     }
 }
