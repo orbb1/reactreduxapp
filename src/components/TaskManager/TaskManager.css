@@ -1,0 +1,32 @@
+.TaskList-Form {
+    margin: 15px;
+    padding: 15px;
+}
+
+.TaskList-Input {
+    height: 30px;
+    border: 1px solid darkolivegreen;
+    padding: 5px;
+}
+
+.TaskList-Button {
+    height: 30px;
+    background-color: transparent;
+    border: 1px solid darkolivegreen;    
+}
+
+.TaskList-Tasks {
+    margin: 15px;
+    padding: 15px;
+    text-align: left;
+}
+
+.TaskList-Task {
+    margin: 15px;
+    padding: 15px;
+    line-height: 2rem;
+}
+
+.TaskList-Task > .TaskList-Button {
+    float: right;
+}

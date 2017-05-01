@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { asyncGetIt } from '../actions/asyncTasks';
+import { asyncGetIt } from '../../actions/asyncTasks';
+
+import './TaskManager.css';
 
 class TaskManager extends Component {
   constructor(props) {
@@ -13,7 +15,8 @@ class TaskManager extends Component {
     this.removeTask = this.removeTask.bind(this);
   }
 
-  addTask() {
+  addTask(e) {
+    e.preventDefault();
     this.props.onAddTask(this.taskInput.value)
   }
 
@@ -21,7 +24,8 @@ class TaskManager extends Component {
     this.props.onRemoveTask(taskk);
   }
 
-  filterTasks() {
+  filterTasks(e) {
+    e.preventDefault();
     this.props.onFilter(this.filterInput.value);
   }
 
@@ -31,25 +35,31 @@ class TaskManager extends Component {
   
   render() {
     return (
-      <div>
-        <div>
-          <input type="text" ref={(input) => { this.taskInput = input }}/>
-          <button onClick={this.addTask} >Add Task</button>
+      <div className="TaskList-Container container">
+        <div className="TaskList-Form">
+          <form onSubmit={this.addTask}>
+            <input className="TaskList-Input" 
+                  type="text" 
+                  ref={(input) => { this.taskInput = input }} 
+                  placeholder="Write new task"/>
+          </form>
         </div>
-        <div>
-          <input type="text" ref={(input) => { this.filterInput = input }}/>
-          <button onClick={this.filterTasks} >Filter</button>
+        <div className="TaskList-Form">
+          <form onSubmit={this.filterTasks}>
+            <input className="TaskList-Input" 
+                  type="text" 
+                  ref={(input) => { this.filterInput = input }} 
+                  placeholder="Filter"/>
+          </form>
         </div>
-        <div>
-          <button onClick={ this.props.onGetIt }>get it</button>
+        <div className="TaskList-Async">
+          <button className="TaskList-Button" onClick={ this.props.onGetIt }>Get tasks</button>
         </div>
-        <ul>
+        <ul className="TaskList-Tasks">
           {this.props.tasks.map((task, index) => 
-            <div key={ index }>
-              <button onClick={() => this.onToggleComplete(task)}>X</button>
-              <span> { task.taskName }</span>
-              <p>Task status: { task.completed ? "done" : "not done" }</p>
-              <button onClick={() => this.removeTask(task)}>remove</button>
+            <div className="TaskList-Task" key={ index }>
+              <span onClick={() => this.onToggleComplete(task)}> { task.completed ? <strike>{task.taskName}</strike> : task.taskName }</span>
+              <button className="TaskList-Button" onClick={() => this.removeTask(task)}>X</button>
             </div>
           )}
         </ul>

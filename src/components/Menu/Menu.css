@@ -1,0 +1,21 @@
+.Header-Container {
+    padding: 10px;
+}
+
+.Header-Item {
+    display: inline-block;
+    margin: 15px;
+    text-transform: uppercase;
+}
+
+.Header-Item > a, 
+.Header-Item > a:visited  {
+    text-decoration: none;
+    color: darkslategray;
+    font-size: 2rem;
+}
+
+.Header-Item > a:hover,
+.Header-Item > a:active {
+    color: darkolivegreen;
+}
