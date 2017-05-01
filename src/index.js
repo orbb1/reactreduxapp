@@ -7,7 +7,7 @@ import reducer from './reducers';
 import thunk from 'redux-thunk';
 import { Route, HashRouter } from 'react-router-dom';
 
-import TaskManager from './components/TaskManager';
+import TaskList from './components/TaskList';
 import About from './components/About';
 import Menu from './components/Menu';
 import './index.css';
@@ -20,7 +20,7 @@ ReactDOM.render(
       <div>
         <Menu/>
         <hr/>
-        <Route exact path="/" component={TaskManager}/>
+        <Route exact path="/" component={TaskList}/>
         <Route path="/about" component={About}/>
       </div>
     </HashRouter>

@@ -1,34 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Task from './Task';
+
 import { asyncGetIt } from '../actions/asyncTasks';
 
-class TaskManager extends Component {
+class TaskList extends Component {
   constructor(props) {
     super(props);
 
     this.addTask = this.addTask.bind(this);
     this.filterTasks = this.filterTasks.bind(this);
-    this.onToggleComplete = this.onToggleComplete.bind(this);
-    this.removeTask = this.removeTask.bind(this);
   }
 
   addTask() {
     this.props.onAddTask(this.taskInput.value)
   }
 
-  removeTask(taskk) {
-    this.props.onRemoveTask(taskk);
-  }
-
   filterTasks() {
     this.props.onFilter(this.filterInput.value);
   }
 
-  onToggleComplete(taskk) {
-    this.props.toggleComplete(taskk);
-  }
-  
   render() {
     return (
       <div>
@@ -45,12 +37,7 @@ class TaskManager extends Component {
         </div>
         <ul>
           {this.props.tasks.map((task, index) => 
-            <div key={ index }>
-              <button onClick={() => this.onToggleComplete(task)}>X</button>
-              <span> { task.taskName }</span>
-              <p>Task status: { task.completed ? "done" : "not done" }</p>
-              <button onClick={() => this.removeTask(task)}>remove</button>
-            </div>
+            <Task key={index} childProp={task}/>
           )}
         </ul>
       </div>
@@ -66,23 +53,16 @@ export default connect(
     onAddTask: (taskName) => {
       const task = {
         id : Number(Date.now().toString()),
-        taskName
+        taskName,
+        completed : false
       }
       dispatch({ type: "ADD_TASK", task })
     },
-
-    onRemoveTask: (task) => {
-      dispatch({ type: "REMOVE_TASK", task })
-    },
-
     onFilter: (taskName) => {
       dispatch({ type: "FILTER_TASKS", task: taskName })
     },
     onGetIt: () => {
       dispatch(asyncGetIt());
     },
-    toggleComplete: (task) => {
-        dispatch({ type: "COMPLETE_TASK", task })
-    }
   })
-)(TaskManager);
+)(TaskList);
