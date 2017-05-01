@@ -5,11 +5,11 @@ export const asyncGetIt = () => dispatch => {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        method: "get"
+        method: 'get'
     }).then(response => response.json().then(body => ({ response, body })))
         .then(({ response, body }) => {
             if (!response.ok) {
-                console.log("An error occured. Status:", response.status)
+                console.log('An error occured. Status:', response.status)
             } else {
                 dispatch({
                     type: 'ASYNC_TASK',
