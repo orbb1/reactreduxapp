@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import {List, ListItem} from 'material-ui/List';
+import FlatButton from 'material-ui/FlatButton';
 
 import { asyncGetIt } from '../../actions/asyncTasks';
 
@@ -17,7 +21,7 @@ class TaskManager extends Component {
 
   addTask(e) {
     e.preventDefault();
-    this.props.onAddTask(this.taskInput.value)
+    this.props.onAddTask(this.refs.addTaskField.getValue())
   }
 
   removeTask(taskk) {
@@ -26,7 +30,7 @@ class TaskManager extends Component {
 
   filterTasks(e) {
     e.preventDefault();
-    this.props.onFilter(this.filterInput.value);
+    this.props.onFilter(this.refs.filterField.getValue());
   }
 
   onToggleComplete(taskk) {
@@ -38,28 +42,23 @@ class TaskManager extends Component {
       <div className="TaskList-Container container">
         <div className="TaskList-Form">
           <form onSubmit={this.addTask}>
-            <input className="TaskList-Input" 
-                  type="text" 
-                  ref={(input) => { this.taskInput = input }} 
-                  placeholder="Write new task"/>
+                  <TextField className="el-inline" hintText="Write new task" ref="addTaskField"/>
+                  <RaisedButton label="Add task" type="submit"/>  
           </form>
         </div>
         <div className="TaskList-Form">
           <form onSubmit={this.filterTasks}>
-            <input className="TaskList-Input" 
-                  type="text" 
-                  ref={(input) => { this.filterInput = input }} 
-                  placeholder="Filter"/>
+                  <TextField hintText="Filter tasks" ref="filterField" onChange={this.filterTasks}/>
           </form>
         </div>
         <div className="TaskList-Async">
-          <button className="TaskList-Button" onClick={ this.props.onGetIt }>Get tasks</button>
+          <RaisedButton label="Get tasks" onClick={ this.props.onGetIt }/>
         </div>
         <ul className="TaskList-Tasks">
           {this.props.tasks.map((task, index) => 
             <div className="TaskList-Task" key={ index }>
               <span onClick={() => this.onToggleComplete(task)}> { task.completed ? <strike>{task.taskName}</strike> : task.taskName }</span>
-              <button className="TaskList-Button" onClick={() => this.removeTask(task)}>X</button>
+              <RaisedButton className="TaskList-Button" label="Delete" onClick={() => this.removeTask(task)}/>
             </div>
           )}
         </ul>
