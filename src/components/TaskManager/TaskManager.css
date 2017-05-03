@@ -10,13 +10,12 @@
 }
 
 .TaskList-Tasks {
-    margin: 15px;
+    margin: 15px 0;
     padding: 15px;
     text-align: left;
 }
 
 .TaskList-Task {
-    margin: 15px;
     padding: 15px;
     line-height: 2rem;
     word-wrap: break-word;

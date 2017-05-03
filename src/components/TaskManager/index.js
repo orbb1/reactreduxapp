@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import {List, ListItem} from 'material-ui/List';
-import FlatButton from 'material-ui/FlatButton';
 
 import { asyncGetIt } from '../../actions/asyncTasks';
 
@@ -47,9 +45,7 @@ class TaskManager extends Component {
           </form>
         </div>
         <div className="TaskList-Form">
-          <form onSubmit={this.filterTasks}>
-                  <TextField hintText="Filter tasks" ref="filterField" onChange={this.filterTasks}/>
-          </form>
+          <TextField hintText="Filter tasks" ref="filterField" onChange={this.filterTasks}/>
         </div>
         <div className="TaskList-Async">
           <RaisedButton label="Get tasks" onClick={ this.props.onGetIt }/>
