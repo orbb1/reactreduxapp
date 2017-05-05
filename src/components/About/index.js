@@ -9,7 +9,7 @@ class About extends Component {
                 <h4>This is my simple todo app</h4>
                 <p>I made this page for practising React and Redux</p>
                 <hr/>
-                <p>Here link to <a href="https://github.com/orbb1/reactreduxapp">GitHub repo</a></p>
+                <p>Link to <a href="https://github.com/orbb1/reactreduxapp">GitHub repo</a></p>
             </div>
         )
     }
