@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
-import './Add-task-form.css';
-
 class AddTaskForm extends Component {
     constructor(props) {
         super(props);
@@ -19,12 +17,10 @@ class AddTaskForm extends Component {
 
     render() {
         return (
-            <div className="TaskList-Form">
-                <form onSubmit={this.addTask}>
-                        <TextField className="el-inline" hintText="Write new task" ref="addTaskField"/>
-                        <RaisedButton label="Add task" type="submit"/>  
-                </form>
-            </div>
+            <form onSubmit={this.addTask}>
+                <TextField className="el-inline" hintText="Write new task" ref="addTaskField"/>
+                <RaisedButton label="Add task" type="submit"/>  
+            </form>
         )
     }
 }

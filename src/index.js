@@ -6,6 +6,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
 import { Route, HashRouter } from 'react-router-dom';
+import logger from 'redux-logger'
+
 // TapEventPlugin for Material Ui
 import injectTapEventPlugin from 'react-tap-event-plugin'
 injectTapEventPlugin();
@@ -19,7 +21,8 @@ import About from './components/About/index';
 import Menu from './components/Menu';
 import './index.css';
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+let middleware = [logger, thunk]
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(...middleware)));
 
 ReactDOM.render(
   <Provider store={store}>
