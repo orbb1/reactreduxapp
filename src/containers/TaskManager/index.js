@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 import { asyncGetIt } from '../../actions/asyncTasks';
+import AddTaskForm from '../../components/Add-task-form/';
 
 import './TaskManager.css';
 
@@ -11,15 +12,9 @@ class TaskManager extends Component {
   constructor(props) {
     super(props);
 
-    this.addTask = this.addTask.bind(this);
     this.filterTasks = this.filterTasks.bind(this);
     this.onToggleComplete = this.onToggleComplete.bind(this);
     this.removeTask = this.removeTask.bind(this);
-  }
-
-  addTask(e) {
-    e.preventDefault();
-    this.props.onAddTask(this.refs.addTaskField.getValue())
   }
 
   removeTask(taskk) {
@@ -38,12 +33,7 @@ class TaskManager extends Component {
   render() {
     return (
       <div className="TaskList-Container container">
-        <div className="TaskList-Form">
-          <form onSubmit={this.addTask}>
-                  <TextField className="el-inline" hintText="Write new task" ref="addTaskField"/>
-                  <RaisedButton label="Add task" type="submit"/>  
-          </form>
-        </div>
+          <AddTaskForm />
         <div className="TaskList-Form">
           <TextField hintText="Filter tasks" ref="filterField" onChange={this.filterTasks}/>
         </div>
@@ -68,13 +58,6 @@ export default connect(
     tasks: state.tasks.filter(task => task.taskName.includes(state.taskFilter))
   }),
   dispatch => ({
-    onAddTask: (taskName) => {
-      const task = {
-        id : Number(Date.now().toString()),
-        taskName
-      }
-      dispatch({ type: "ADD_TASK", task })
-    },
 
     onRemoveTask: (task) => {
       dispatch({ type: "REMOVE_TASK", task })

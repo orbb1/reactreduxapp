@@ -8,7 +8,7 @@ class Menu extends Component {
         return (
             <div className="Header-Container container">
                 <div className="Header-Item">
-                    <Link to="/">home</Link>
+                    <Link to="/">Tasklist</Link>
                 </div>
                 <div className="Header-Item">
                     <Link to="/about">About</Link>                    

@@ -14,7 +14,7 @@ injectTapEventPlugin();
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
-import TaskManager from './components/TaskManager/index';
+import TaskManager from './containers/TaskManager/index';
 import About from './components/About/index';
 import Menu from './components/Menu';
 import './index.css';
@@ -27,12 +27,12 @@ ReactDOM.render(
       <MuiThemeProvider>
         <div>
           {/*Navigation throu routing*/}
-          {/*<Menu/>
+          <Menu/>
           <Route exact path="/" component={TaskManager}/>
-          <Route path="/about" component={About}/>*/}
+          <Route path="/about" component={About}/>
 
           {/*Or navigation throu MaterialUI tabs*/}
-          <div className="Tabs-container">
+          {/*<div className="Tabs-container">
             <Tabs>
               <Tab label="Task manager" >
                 <TaskManager/>
@@ -41,7 +41,7 @@ ReactDOM.render(
                 <About/>
               </Tab>
             </Tabs>
-          </div>
+          </div>*/}
         </div>
       </MuiThemeProvider>
     </HashRouter>
