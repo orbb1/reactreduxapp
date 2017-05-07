@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 
-import { asyncGetIt } from '../../actions/asyncTasks';
 import AddTaskForm from '../../components/Add-task-form/';
 import Task from '../../components/Task/';
-import TaskFilter from '../../components/TaskFilter/'
+import TaskFilter from '../../components/TaskFilter/';
+import AsyncTasks from '../../components/AsyncTasks/';
 
 import './TaskManager.css';
 
@@ -19,10 +17,10 @@ class TaskManager extends Component {
           <AddTaskForm />
         </div>
         <div className="TaskList-Form">
-          <TaskFilter/>
+          <TaskFilter />
         </div>
-        <div className="TaskList-Async">
-          <RaisedButton label="Get tasks" onClick={ this.props.onGetIt }/>
+        <div>
+          <AsyncTasks />
         </div>
         <ul className="TaskList-Tasks">
           {this.props.tasks.map((task, index) => 
@@ -38,9 +36,5 @@ export default connect(
   state => ({
     tasks: state.tasks.filter(task => task.taskName.includes(state.taskFilter))
   }),
-  dispatch => ({
-    onGetIt: () => {
-      dispatch(asyncGetIt());
-    }
-  })
+  dispatch => ({})
 )(TaskManager);
