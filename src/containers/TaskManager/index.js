@@ -11,37 +11,38 @@ import './TaskManager.css';
 
 class TaskManager extends Component {
   constructor(props) {
-    super(props);
+      super(props);
 
-    this.addTask = this.addTask.bind(this);
-    this.newTaskInputChange = this.newTaskInputChange.bind(this);
-    this.filterTasksInputchange = this.filterTasksInputchange.bind(this);
+      this.addTask = this.addTask.bind(this);
+      this.newTaskInputChange = this.newTaskInputChange.bind(this);
+      this.filterTasksInputchange = this.filterTasksInputchange.bind(this);
 
-    this.state = {
-      newTaskName: ''
-    };
+      this.state = {
+          newTaskName: ''
+      };
   }
 
   filterTasksInputchange(e) {
-    e.preventDefault();
-    this.props.onFilter(e.target.value)
+      e.preventDefault();
+      this.props.onFilter(e.target.value)
   }
 
   addTask(e) {
-        e.preventDefault();
-        this.state.newTaskName.length > 3 && this.props.onAddTask(this.state.newTaskName)
-    }
-
-  newTaskInputChange(e) {
-    this.setState({newTaskName: e.target.value});
+      e.preventDefault();
+      this.state.newTaskName.length > 3
+        && this.props.onAddTask(this.state.newTaskName)
   }
 
+  newTaskInputChange(e) {
+      this.setState({ newTaskName: e.target.value });
+  }
 
   render() {
+
     return (
       <div className="TaskList-Container container">
         <div className="TaskList-Form">
-          <AddTaskForm handleSubmit={this.addTask} handleChange={this.newTaskInputChange}/>
+          <AddTaskForm handleSubmit={this.addTask} handleChange={this.newTaskInputChange} />
         </div>
         <div className="TaskList-Form">
           <TaskFilter hanleFilterChange={this.filterTasksInputchange} />
@@ -50,8 +51,8 @@ class TaskManager extends Component {
           <AsyncTasks onGetIt={this.props.onGetIt} />
         </div>
         <ul className="TaskList-Tasks">
-          {this.props.tasks.map((task, index) => 
-            <Task key={ index } task={ task } completed={ task.completed }/>
+          {this.props.tasks.map((task, index) =>
+            <Task key={index} task={task} completed={task.completed} />
           )}
         </ul>
       </div>

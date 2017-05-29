@@ -6,8 +6,8 @@ export const asyncGetIt = () => dispatch => {
             'Accept': 'application/json',
         },
         method: 'get'
-    }).then(response => response.json().then(body => ({ response, body })))
-        .then(({ response, body }) => {
+    }).then(response => response.json().then(body => ({response, body})))
+        .then(({response, body}) => {
             if (!response.ok) {
                 console.log('An error occured. Status:', response.status)
             } else {

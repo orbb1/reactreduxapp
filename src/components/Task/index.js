@@ -11,21 +11,20 @@ class Task extends Component {
     }
 
     onToggleComplete(taskk) {
-        
         this.props.toggleComplete(taskk);
     }
 
     removeTask(taskk) {
-        
         this.props.onRemoveTask(taskk);
     }
 
     render() {
         const task = this.props.task;
+
         return (
             <div className="TaskList-Task">
-              <span onClick={() => this.onToggleComplete(task)}> { task.completed ? <strike>{task.taskName}</strike> : task.taskName }</span>
-              <RaisedButton className="TaskList-Button" label="Delete" onClick={() => this.removeTask(task)}/>
+                <span onClick={() => this.onToggleComplete(task)}> {task.completed ? <strike>{task.taskName}</strike> : task.taskName}</span>
+                <RaisedButton className="TaskList-Button" label="Delete" onClick={() => this.removeTask(task)} />
             </div>
         )
     }
@@ -35,10 +34,10 @@ export default connect(
     null,
     dispatch => ({
         onRemoveTask: (task) => {
-            dispatch({ type: "REMOVE_TASK", task })
+            dispatch({type: "REMOVE_TASK", task})
         },
         toggleComplete: (task) => {
-            dispatch({ type: "COMPLETE_TASK", task })
+            dispatch({type: "COMPLETE_TASK", task})
         }
     })
 )(Task);

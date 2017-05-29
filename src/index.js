@@ -17,8 +17,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Tabs, Tab} from 'material-ui/Tabs';
 
 import TaskManager from './containers/TaskManager/index';
-import About from './components/About/index';
-import Menu from './components/Menu';
+import About from './containers/About/index';
+import {Menu} from './components/Menu';
 import './index.css';
 
 let middleware = [logger, thunk]
