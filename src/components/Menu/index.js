@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {MenuLink} from '../MenuLink/';
 
 import './Menu.css';
 
@@ -8,10 +8,10 @@ export const Menu = () => {
     return (
         <div className="Header-Container container">
             <div className="Header-Item">
-                <Link to="/">Tasklist</Link>
+                <MenuLink to="/" label="Tasklist" exact={true}/>
             </div>
             <div className="Header-Item">
-                <Link to="/about">About</Link>                    
+                <MenuLink to="/about" label="About"/>
             </div>
         </div>
     )
