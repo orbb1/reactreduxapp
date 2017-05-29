@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './Menu.css';
 
-class Menu extends Component {
-    render() {
+const Menu = () => {
+
         return (
             <div className="Header-Container container">
                 <div className="Header-Item">
@@ -15,7 +15,6 @@ class Menu extends Component {
                 </div>
             </div>
         )
-    }
 }
 
 export default Menu;

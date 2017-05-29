@@ -6,11 +6,9 @@
   margin: 15px 0;
   padding: 15px;
   text-align: left; }
-
-.TaskList-Tasks .TaskList-Task {
-  padding: 15px;
-  line-height: 2rem;
-  word-wrap: break-word; }
-
-.TaskList-Tasks .TaskList-Task .TaskList-Button {
-  float: right; }
+  .TaskList-Tasks .TaskList-Task {
+    padding: 15px;
+    line-height: 2rem;
+    word-wrap: break-word; }
+    .TaskList-Tasks .TaskList-Task .TaskList-Button {
+      float: right; }
