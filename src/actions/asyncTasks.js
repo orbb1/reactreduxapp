@@ -13,7 +13,7 @@ export const asyncGetIt = () => dispatch => {
             } else {
                 dispatch({
                     type: 'ASYNC_TASK',
-                    task: body
+                    task: body.tasklist
                 });
             }
         });
