@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { getFilteredTasks } from '../../selectors/reselect';
 import { AddTaskForm } from '../../components/Add-task-form/';
 import Task from '../../components/Task/';
 import { TaskFilter } from '../../components/TaskFilter/';
@@ -62,7 +62,7 @@ class TaskManager extends Component {
 
 export default connect(
   state => ({
-    tasks: state.tasks.filter(task => task.taskName.toLowerCase().includes(state.taskFilter.toLowerCase()))
+    tasks: getFilteredTasks(state)
   }),
   dispatch => ({
     onAddTask: (taskName) => {
