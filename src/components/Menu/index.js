@@ -1,7 +1,7 @@
 import React from 'react';
 import {MenuLink} from '../MenuLink/';
 
-import './Menu.css';
+import './Menu.scss';
 
 export const Menu = () => {
 

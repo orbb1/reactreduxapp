@@ -7,7 +7,7 @@ import { TaskFilter } from '../../components/TaskFilter/';
 import { AsyncTasks } from '../../components/AsyncTasks/';
 import { asyncGetIt } from '../../actions/asyncTasks';
 
-import './TaskManager.css';
+import './TaskManager.scss';
 
 class TaskManager extends Component {
   constructor(props) {

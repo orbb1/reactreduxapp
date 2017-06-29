@@ -18,7 +18,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TaskManager from './containers/TaskManager/index';
 import About from './containers/About/index';
 import {Menu} from './components/Menu';
-import './index.css';
+import './index.scss';
 
 let middleware = [logger, thunk]
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(...middleware)));
