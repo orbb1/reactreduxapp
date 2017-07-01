@@ -15,9 +15,9 @@ injectTapEventPlugin();
 //Material Ui
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import TaskManager from './containers/TaskManager/index';
+import TaskList from './containers/TaskList/index';
 import About from './containers/About/index';
-import {Menu} from './components/Menu';
+import {Nav} from './components/Nav';
 import './index.scss';
 
 let middleware = [logger, thunk]
@@ -28,8 +28,8 @@ ReactDOM.render(
     <BrowserRouter>
       <MuiThemeProvider>
         <div>
-          <Menu/>
-          <Route exact path="/" component={TaskManager}/>
+          <Nav/>
+          <Route exact path="/" component={TaskList}/>
           <Route path="/about" component={About}/>
         </div>
       </MuiThemeProvider>

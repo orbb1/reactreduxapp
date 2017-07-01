@@ -7,9 +7,9 @@ import { TaskFilter } from '../../components/TaskFilter/';
 import { AsyncTasks } from '../../components/AsyncTasks/';
 import { asyncGetIt } from '../../actions/asyncTasks';
 
-import './TaskManager.scss';
+import './TaskList.scss';
 
-class TaskManager extends Component {
+class TaskList extends Component {
   constructor(props) {
       super(props);
 
@@ -40,17 +40,17 @@ class TaskManager extends Component {
   render() {
 
     return (
-      <div className="TaskList-Container container">
-        <div className="TaskList-Form">
+      <div className="container">
+        <div className="TaskList-form">
           <AddTaskForm handleSubmit={this.addTask} handleChange={this.newTaskInputChange} />
         </div>
-        <div className="TaskList-Form">
+        <div className="TaskList-form">
           <TaskFilter hanleFilterChange={this.filterTasksInputchange} />
         </div>
         <div>
           <AsyncTasks onGetIt={this.props.onGetIt} />
         </div>
-        <ul className="TaskList-Tasks">
+        <ul className="TaskList-tasks">
           {this.props.tasks.map((task, index) =>
             <Task key={index} task={task} completed={task.completed} />
           )}
@@ -79,4 +79,4 @@ export default connect(
       dispatch({ type: "FILTER_TASKS", task: taskName })
     },
   })
-)(TaskManager);
+)(TaskList);
