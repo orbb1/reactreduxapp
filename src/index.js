@@ -6,7 +6,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
 import { Route, BrowserRouter } from 'react-router-dom';
-import logger from 'redux-logger'
+import logger from 'redux-logger';
+import { RouteTransition } from 'react-router-transition';
 
 // TapEventPlugin for Material Ui
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -29,8 +30,15 @@ ReactDOM.render(
       <MuiThemeProvider>
         <div>
           <Nav/>
-          <Route exact path="/" component={TaskList}/>
-          <Route path="/about" component={About}/>
+          <RouteTransition 
+            runOnMount={true}
+            pathname={location.pathname}
+            atEnter={{ opacity: 0 }}
+            atLeave={{ opacity: 0 }}
+            atActive={{ opacity: 1 }}>
+            <Route exact path="/" component={TaskList}/>
+            <Route path="/about" component={About}/>
+          </RouteTransition>
         </div>
       </MuiThemeProvider>
     </BrowserRouter>
