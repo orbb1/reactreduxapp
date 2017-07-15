@@ -1,0 +1,21 @@
+.Nav-container {
+    padding: 10px;
+
+    .Nav-item {
+    display: inline-block;
+    margin: 15px;
+    text-transform: uppercase;
+    }
+
+    .Nav-item > a, 
+    &:visited  {
+        text-decoration: none;
+        color: darkslategray;
+        font-size: 2rem;
+    }
+
+    .Nav-item > a:hover,
+    .Nav-item > a:active {
+        color: darkolivegreen;
+    }
+}

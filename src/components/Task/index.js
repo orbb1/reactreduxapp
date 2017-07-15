@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
+import './Task.scss';
 
 class Task extends Component {
     constructor(props) {
@@ -22,9 +23,9 @@ class Task extends Component {
         const task = this.props.task;
 
         return (
-            <div className="TaskList-Task">
+            <div className="Task-container">
                 <span onClick={() => this.onToggleComplete(task)}> {task.completed ? <strike>{task.taskName}</strike> : task.taskName}</span>
-                <RaisedButton className="TaskList-Button" label="Delete" onClick={() => this.removeTask(task)} />
+                <RaisedButton className="Task-button" label="Delete" onClick={() => this.removeTask(task)} />
             </div>
         )
     }
