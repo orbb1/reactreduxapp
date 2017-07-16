@@ -1,7 +1,12 @@
 import taskFilter from '../src/reducers/taskFilter';
 import taskList from '../src/reducers/tasks';
-import {asyncGetIt} from '../src/actions/asyncTasks';
 
+import {asyncAction} from '../src/actions/asyncTasks';
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+
+const middlewares = [ thunk ];
+const mockStore = configureMockStore(middlewares);
 const initialState = [];
 
 test('returning filter property', () => {
@@ -9,15 +14,12 @@ test('returning filter property', () => {
         type: "FILTER_TASKS",
         task: "keyword"
     }
-    expect(taskFilter(initialState, action)).toBe('keyword')
+    expect(taskFilter(initialState, action)).toBe(action.payload)
 })
 
 describe('empty payload', () => {
     it('return initial state', () => {
-        let action = {
-            type: undefined,
-            task: undefined
-        }
+        let action = {}
         expect(taskList(initialState, action)).toEqual(initialState);
     })
 })
@@ -26,7 +28,7 @@ describe('task actions', () => {
     it('add new task to state', () => {
         let action = {
             type: 'ADD_TASK',
-            task: {
+            payload: {
                 id: 1234,
                 taskName: 'new task'
             }
@@ -43,7 +45,7 @@ describe('task actions', () => {
 
         let action = {
             type: 'REMOVE_TASK',
-            task: localInitialState[0]
+            payload: localInitialState[0]
         }
 
         expect(taskList(localInitialState, action)).toEqual(initialState)
@@ -62,7 +64,7 @@ describe('task actions', () => {
 
         let action = {
             type: 'COMPLETE_TASK',
-            task: localInitialState[0]
+            payload: localInitialState[0]
         };
 
         let expectedState = [{
@@ -76,5 +78,17 @@ describe('task actions', () => {
         }];
 
         expect(taskList(localInitialState, action)).toEqual(expectedState)
+    })
+})
+
+it('send request and dispatch actions in proper order', () => {
+    const store = mockStore({})
+
+    return store.dispatch(asyncAction()).then(() => {
+        const actions = store.getActions();
+        expect(actions.length).toBe(3);
+        expect(actions[0].type).toBe('START_REQUEST');
+        expect(actions[1].type).toBe('SUCCESS_REQUEST');
+        expect(actions[2].type).toBe('ASYNC_TASK');
     })
 })

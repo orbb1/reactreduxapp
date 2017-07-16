@@ -5,7 +5,7 @@ import { AddTaskForm } from '../../components/Add-task-form/';
 import Task from '../../components/Task/';
 import { TaskFilter } from '../../components/TaskFilter/';
 import { AsyncTasks } from '../../components/AsyncTasks/';
-import { asyncGetIt } from '../../actions/asyncTasks';
+import { asyncAction } from '../../actions/asyncTasks';
 import { RouteTransition } from 'react-router-transition';
 
 import './TaskList.scss';
@@ -19,7 +19,8 @@ class TaskList extends Component {
     this.filterTasksInputchange = this.filterTasksInputchange.bind(this);
 
     this.state = {
-      newTaskName: ''
+      newTaskName: '',
+      isFetching: this.props.isFetching
     };
   }
 
@@ -48,6 +49,7 @@ class TaskList extends Component {
         atActive={{ translateX: 0 }}
         mapStyles={styles => ({ transform: `translateX(${styles.translateX}%)` })}>
         <div className="container">
+          {this.props.isFetching && <p>Recieving tasks...</p>}
           <div className="TaskList-form">
             <AddTaskForm handleSubmit={this.addTask} handleChange={this.newTaskInputChange} />
           </div>
@@ -70,7 +72,8 @@ class TaskList extends Component {
 
 export default connect(
   state => ({
-    tasks: getFilteredTasks(state)
+    tasks: getFilteredTasks(state),
+    isFetching: state.asyncActions.isFetching
   }),
   dispatch => ({
     onAddTask: (taskName) => {
@@ -78,13 +81,13 @@ export default connect(
         id: Number(Date.now().toString()),
         taskName
       }
-      dispatch({ type: "ADD_TASK", task })
+      dispatch({ type: "ADD_TASK", payload: task })
     },
     onGetIt: () => {
-      dispatch(asyncGetIt());
+      dispatch(asyncAction());
     },
     onFilter: (taskName) => {
-      dispatch({ type: "FILTER_TASKS", task: taskName })
+      dispatch({ type: "FILTER_TASKS", payload: taskName })
     },
   })
 )(TaskList);

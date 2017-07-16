@@ -35,10 +35,10 @@ export default connect(
     null,
     dispatch => ({
         onRemoveTask: (task) => {
-            dispatch({type: "REMOVE_TASK", task})
+            dispatch({type: "REMOVE_TASK", payload: task})
         },
         toggleComplete: (task) => {
-            dispatch({type: "COMPLETE_TASK", task})
+            dispatch({type: "COMPLETE_TASK", payload: task})
         }
     })
 )(Task);
