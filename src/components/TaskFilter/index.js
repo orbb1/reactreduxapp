@@ -5,8 +5,8 @@ export const TaskFilter = (props) => {
 
     return (
         <div>      
-            <TextField value={window.localStorage.filterProperty || ''} hintText="Filter tasks" onChange={ props.hanleFilterChange }/>
-            <Checkbox defaultChecked={false} label="completed" onCheck={ props.toggleCompleted }/>
+            <TextField value={ window.localStorage.filterProperty || '' } hintText="Filter tasks" onChange={ props.hanleFilterChange }/>
+            <Checkbox defaultChecked={ false } label="completed" onCheck={ props.toggleCompleted }/>
         </div>
     )
 }
