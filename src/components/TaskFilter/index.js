@@ -1,9 +1,12 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
+import { TextField, Checkbox } from 'material-ui';
 
 export const TaskFilter = (props) => {
 
-    return (          
-        <TextField hintText="Filter tasks" onChange={ props.hanleFilterChange }/>
+    return (
+        <div>      
+            <TextField value={window.localStorage.filterProperty || ''} hintText="Filter tasks" onChange={ props.hanleFilterChange }/>
+            <Checkbox defaultChecked={false} label="completed" onCheck={ props.toggleCompleted }/>
+        </div>
     )
 }

@@ -26,6 +26,7 @@ class TaskList extends Component {
 
   filterTasksInputchange(e) {
     e.preventDefault();
+    window.localStorage.filterProperty = e.target.value;
     this.props.onFilter(e.target.value)
   }
 
@@ -37,6 +38,10 @@ class TaskList extends Component {
 
   newTaskInputChange(e) {
     this.setState({ newTaskName: e.target.value });
+  }
+
+  toggleCompleted = (e, b) => {
+    this.props.onToggle(b);
   }
 
   render() {
@@ -54,7 +59,7 @@ class TaskList extends Component {
             <AddTaskForm handleSubmit={this.addTask} handleChange={this.newTaskInputChange} />
           </div>
           <div className="TaskList-form">
-            <TaskFilter hanleFilterChange={this.filterTasksInputchange} />
+            <TaskFilter toggleCompleted={this.toggleCompleted} hanleFilterChange={this.filterTasksInputchange} />
           </div>
           <div>
             <AsyncTasks onGetIt={this.props.onGetIt} />
@@ -89,5 +94,8 @@ export default connect(
     onFilter: (taskName) => {
       dispatch({ type: "FILTER_TASKS", payload: taskName })
     },
+    onToggle: (complete) => {
+      dispatch({ type: "TOGGLE_COMPLETED", payload: complete })
+    }
   })
 )(TaskList);
