@@ -24,7 +24,9 @@ class Task extends Component {
 
         return (
             <div className="Task-container">
-                <span onClick={() => this.onToggleComplete(task)}> {task.completed ? <strike>{task.taskName}</strike> : task.taskName}</span>
+                <div className="Task-label">
+                    <span onClick={() => this.onToggleComplete(task)}> {task.completed ? <strike>{task.taskName}</strike> : task.taskName}</span>
+                </div>
                 <RaisedButton className="Task-button" label="Delete" onClick={() => this.removeTask(task)} />
             </div>
         )

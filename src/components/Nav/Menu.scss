@@ -2,20 +2,16 @@
     padding: 10px;
 
     .Nav-item {
-    display: inline-block;
-    margin: 15px;
-    text-transform: uppercase;
+        display: inline-block;
+        text-transform: uppercase;
+        padding: 15px;
     }
 
     .Nav-item > a, 
-    &:visited  {
+    &:visited,
+    &:hover,
+    &:active  {
         text-decoration: none;
-        color: darkslategray;
-        font-size: 2rem;
-    }
-
-    .Nav-item > a:hover,
-    .Nav-item > a:active {
-        color: darkolivegreen;
+        font-size: 1.5rem;
     }
 }
