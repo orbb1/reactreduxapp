@@ -17,10 +17,13 @@ class TaskList extends Component {
     this.addTask = this.addTask.bind(this);
     this.newTaskInputChange = this.newTaskInputChange.bind(this);
     this.filterTasksInputchange = this.filterTasksInputchange.bind(this);
+    this.onValidate = this.onValidate.bind(this);
 
     this.state = {
       newTaskName: '',
-      isFetching: this.props.isFetching
+      isFetching: this.props.isFetching,
+      validInput: false,
+      validationError: null
     };
   }
 
@@ -32,11 +35,22 @@ class TaskList extends Component {
 
   addTask(e) {
     e.preventDefault();
-    this.state.newTaskName.length > 3
-      && this.props.onAddTask(this.state.newTaskName)
+    this.props.onAddTask(this.state.newTaskName);
+    this.setState({ newTaskName: '' });
+  }
+
+  onValidate(word) {
+    let pattern = /(^[A-Za-z0-9])/;
+    pattern.test(word) 
+      ? word.length > 4 
+        ? this.setState({ validInput: true, validationError: null }) 
+        : this.setState({ validInput: false, validationError: 'your task is too short' })
+      : this.setState({ validInput: false, validationError: 'task sould start with letter or number' });
+    word.length === 0 && this.setState({ validInput: false, validationError: null });
   }
 
   newTaskInputChange(e) {
+    this.onValidate(e.target.value);
     this.setState({ newTaskName: e.target.value });
   }
 
@@ -56,7 +70,7 @@ class TaskList extends Component {
         <div className="container">
           {this.props.isFetching && <p>Recieving tasks...</p>}
           <div className="TaskList-form">
-            <AddTaskForm handleSubmit={this.addTask} handleChange={this.newTaskInputChange} />
+            <AddTaskForm errorMessage={this.state.validationError} validInput={this.state.validInput} newTaskName={this.state.newTaskName} handleSubmit={this.addTask} handleChange={this.newTaskInputChange} />
           </div>
           <div className="TaskList-form">
             <TaskFilter toggleCompleted={this.toggleCompleted} hanleFilterChange={this.filterTasksInputchange} />
@@ -84,7 +98,8 @@ export default connect(
     onAddTask: (taskName) => {
       const task = {
         id: Number(Date.now().toString()),
-        taskName
+        taskName,
+        completed: false
       }
       dispatch({ type: "ADD_TASK", payload: task })
     },
