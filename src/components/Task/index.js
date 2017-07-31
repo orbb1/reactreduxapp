@@ -23,7 +23,7 @@ class Task extends Component {
         const task = this.props.task;
 
         return (
-            <div className="Task-container">
+            <div className={`Task-container ${task.completed ? 'completed' : 'incompleted'}`}>
                 <div className="Task-label">
                     <span onClick={() => this.onToggleComplete(task)}> {task.completed ? <strike>{task.taskName}</strike> : task.taskName}</span>
                 </div>

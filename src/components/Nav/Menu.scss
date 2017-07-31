@@ -1,17 +1,22 @@
 .Nav-container {
-    padding: 10px;
+    padding: 0;
 
     .Nav-item {
         display: inline-block;
         text-transform: uppercase;
-        padding: 15px;
+        padding: 10px 0;
+        width: 50%;
+        transition: background-color 500ms ease;
+    }
+
+    .Nav-item:hover {
+        background-color: whitesmoke;
     }
 
     .Nav-item > a, 
     &:visited,
-    &:hover,
     &:active  {
         text-decoration: none;
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
 }

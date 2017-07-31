@@ -2,6 +2,15 @@
         padding: 15px;
         line-height: 2rem;
         word-wrap: break-word;
+        transition: background-color 500ms ease;
+
+        &.incompleted:hover {
+            background-color: lightsalmon;
+        }
+
+        &.completed:hover {
+            background-color: lightcyan;
+        }
 
         .Task-label,
         .Task-button {
